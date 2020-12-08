@@ -40,7 +40,6 @@ def field(items, *args):
 
 
 def main():
-    #field(goods)
     field(goods, 'title')
     field(goods, 'title', 'price')
     field(goods, 'title', 'price', 'color')
