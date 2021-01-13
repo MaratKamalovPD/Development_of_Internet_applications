@@ -1,0 +1,31 @@
+.text-center {
+    text-align: center;
+}
+.high {
+    height: 700px;
+}
+/*a:hover {*/
+/*    color: lawngreen; !* Цвет ссылки при наведении на нее курсора мыши *!*/
+/*    text-decoration: underline; !* Добавляем подчеркивание *!*/
+/*   }*/
+li {
+    list-style-type: none;
+   }
+ul {
+    margin-left: 0;
+    padding-left: 0;
+}
+table.table_class  {
+    background: #000000;
+    color: lightcyan;
+}
+table.table_class  {
+    background: lightcyan;
+    color: crimson;
+}
+td:hover::before {
+  content: '';
+  background: #d5e6a2; /* Цвет фона */
+  height: 2000px;
+  width: 100%;
+}

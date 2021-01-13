@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>Годовые Отчеты</title>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'catalog/css/style.css' %}">
+    <link href="{% static 'catalog/css/c3.min.css' %}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-light" style="background-color: #30383f;">
+        <div class="container-fluid modal-header">
+            <a class="navbar-brand" style="color: #ffffff" href="/catalog/">Advanced Micro Devices</a>
+        </div>
+    </nav>
+    <main class="container-fluid" style="background-color: #ffffff;">
+        <div class="row justify-content-around">
+            <div class="col-6">
+                <figure class="text-center">
+                <p class="lead text-primary" style="color: #000000"> <em>Годовой Отчет по процессору: {{processor.name}}</em></p>
+                </figure>
+                <table class="table table-hover table-danger table-striped table-bordered text-center" cellpadding="20" border="1">
+                    <thead>
+                        <tr>
+                          <th scope="col">Год</th>
+                          <th scope="col">Продано процессоров, тыс.шт.</th>
+                          <th scope="col">Произведено процессоров, тыс.шт.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td>{{ report_1.year }}</td>
+                          <td>{{ report_1.profit }}</td>
+                          <td>{{ report_1.expense }}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ report_2.year }}</td>
+                          <td>{{ report_2.profit }}</td>
+                          <td>{{ report_2.expense }}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ report_3.year }}</td>
+                          <td>{{ report_3.profit }}</td>
+                          <td>{{ report_3.expense }}</td>
+                        </tr>
+                        <tr>
+                          <td>{{ report_4.year }}</td>
+                          <td>{{ report_4.profit }}</td>
+                          <td>{{ report_4.expense }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row justify-content-around">
+            <div class="col-8">
+              <div id="chart2"></div>
+            </div>
+        </div>
+
+    </main>
+    <footer class="bg-secondary modal-footer">
+        <address class="container-fluid text-center">
+            <p class="text-light">©2021 Advanced Micro Devices</p>
+        </address>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="{% static 'catalog/js/c3.min.js' %}"></script>
+
+
+
+
+    <script>
+    var chart2 = c3.generate({
+        bindto: '#chart2',
+        data: {
+            columns: [
+                // ['data1', 30],
+            ],
+            names: {
+                data1: "Произведено процессоров в 2017 году",
+                data2: "Произведено процессоров в 2018 году",
+                data3: "Произведено процессоров в 2019 году",
+                data4: "Произведено процессоров в 2020 году"
+            },
+            type : 'pie',
+            onclick: function (d, i) { console.log("onclick", d, i); },
+            onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+            onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+        }
+    });
+
+       setTimeout(function () {
+            chart2.load({
+                columns: [['data1', "{{ report_1.expense }}" ]]
+            });
+        }, 300);
+       setTimeout(function () {
+            chart2.load({
+                columns: [['data2', "{{ report_2.expense }}" ]]
+            });
+        }, 600);
+       setTimeout(function () {
+            chart2.load({
+                columns: [['data3', "{{ report_3.expense }}" ]]
+            });
+        }, 900);
+       setTimeout(function () {
+            chart2.load({
+                columns: [['data4', "{{ report_4.expense }}" ]]
+            });
+        }, 1200);
+    </script>
+
+
+
+
+
+
+
+</body>
+</html>
